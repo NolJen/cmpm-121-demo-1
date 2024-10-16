@@ -11,8 +11,8 @@ app.append(header);
 
 //step 1 create button and emoji
 const button = document.createElement("button");
-button.innerHTML = "👾 click me"
-button.type = "button"
+button.innerHTML = "👾 click me";
+button.type = "button";
 button.name = "funButton";
 button.title = "Click me for fun!";
 
