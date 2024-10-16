@@ -36,8 +36,26 @@ button.addEventListener("click", () => {
 
 //step 3
 // Increment the counter every second using setInterval
-setInterval(() => {
-  counter++;
-  counterDiv.innerHTML = `${counter} purple people eaters`;
-}, 1000);
+//setInterval(() => {
+//  counter++;
+//  counterDiv.innerHTML = `${counter} purple people eaters`;
+//}, 1000);
 // refrenced https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
+
+//step 4
+// increase of 1 unit per second
+let lastTimestamp: number | null = null;
+
+function updateCounter(timestamp: number) {
+  if (lastTimestamp !== null) {
+    const elapsed = timestamp - lastTimestamp;
+    counter += elapsed / 1000; 
+    counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
+  }
+  lastTimestamp = timestamp;
+  requestAnimationFrame(updateCounter);
+}
+
+requestAnimationFrame(updateCounter);
+// sources https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame
+// https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
