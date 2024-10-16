@@ -37,7 +37,7 @@ button.addEventListener("click", () => {
 //step 3
 // Increment the counter every second using setInterval
 setInterval(() => {
-    counter++;
-    counterDiv.innerHTML = `${counter} purple people eaters`;
-  }, 1000);
-  // refrenced https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
+  counter++;
+  counterDiv.innerHTML = `${counter} purple people eaters`;
+}, 1000);
+// refrenced https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
