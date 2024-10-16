@@ -30,3 +30,5 @@ button.addEventListener("click", () => {
   counter++;
   counterDiv.innerHTML = `${counter} purple people eaters`;
 });
+// refrenced https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+// and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
