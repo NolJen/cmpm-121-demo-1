@@ -29,39 +29,65 @@ app.append(counterDiv);
 // Add an event listener to the button to increment the counter
 button.addEventListener("click", () => {
   counter++;
-  counterDiv.innerHTML = `${counter} purple people eaters`;
+  updateDisplay();
 });
 // refrenced https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 // and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 
 //step 3
-// Increment the counter every second using setInterval
-//setInterval(() => {
-//  counter++;
-//  counterDiv.innerHTML = `${counter} purple people eaters`;
-//}, 1000);
-// refrenced https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
+// Purchasable upgrade buttons
+const upgrades = [
+  { name: "🩳 short shorts (0.1 units/sec)", cost: 10, rate: 0.1, count: 0 },
+  { name: "🎸 rock and roll band (2.0 units/sec)", cost: 100, rate: 2.0, count: 0 },
+  { name: "📺 TV show (50 units/sec)", cost: 1000, rate: 50, count: 0 },
+];
 
-// purchasable upgrade button for Short Shorts
-const upgradeButton = document.createElement("button");
-upgradeButton.innerHTML = "🩳 Buy Short Shorts";
-upgradeButton.type = "button";
-upgradeButton.disabled = true;
-upgradeButton.title = "Costs 10 purple people eaters";
-app.append(upgradeButton);
-
-//  event listener to increase the growth rate
 let growthRate: number = 0;
-upgradeButton.addEventListener("click", () => {
-  if (counter >= 10) {
-    counter -= 10;
-    growthRate += 1;
-    counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
-    upgradeButton.disabled = counter < 10;
-  }
+const upgradeButtons: HTMLButtonElement[] = [];
+upgrades.forEach((upgrade, index) => {
+  const upgradeButton = document.createElement("button");
+  upgradeButton.innerHTML = upgrade.name;
+  upgradeButton.type = "button";
+  upgradeButton.disabled = true;
+  upgradeButton.title = `Costs ${upgrade.cost} purple people eaters`;
+  app.append(upgradeButton);
+  upgradeButtons.push(upgradeButton);
+
+  upgradeButton.addEventListener("click", () => {
+    if (counter >= upgrade.cost) {
+      counter -= upgrade.cost;
+      growthRate += upgrade.rate;
+      upgrades[index].count++;
+      updateDisplay();
+    }
+  });
 });
 
 //step 4
+// Status displays
+const growthRateDiv = document.createElement("div");
+growthRateDiv.innerHTML = `Growth rate: ${growthRate.toFixed(2)} units/sec`;
+app.append(growthRateDiv);
+
+const upgradeCountsDiv = document.createElement("div");
+upgradeCountsDiv.innerHTML = upgrades
+  .map((upgrade) => `${upgrade.name}: ${upgrade.count} purchased`)
+  .join("<br>");
+app.append(upgradeCountsDiv);
+
+// Function to update the display
+function updateDisplay() {
+  counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
+  growthRateDiv.innerHTML = `Growth rate: ${growthRate.toFixed(2)} units/sec`;
+  upgradeCountsDiv.innerHTML = upgrades
+    .map((upgrade) => `${upgrade.name}: ${upgrade.count} purchased`)
+    .join("<br>");
+
+  upgradeButtons.forEach((button, index) => {
+    button.disabled = counter < upgrades[index].cost;
+  });
+}
+
 // increase of 1 unit per second
 let lastTimestamp: number | null = null;
 
@@ -69,8 +95,7 @@ function updateCounter(timestamp: number) {
   if (lastTimestamp !== null) {
     const elapsed = timestamp - lastTimestamp;
     counter += (elapsed / 1000) * growthRate;
-    counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
-    upgradeButton.disabled = counter < 10; //button is disabled until the player has at least 10 units in their counter
+    updateDisplay();
   }
   lastTimestamp = timestamp;
   requestAnimationFrame(updateCounter);
