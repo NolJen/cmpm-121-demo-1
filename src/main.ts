@@ -41,12 +41,15 @@ interface Item {
   cost: number;
   rate: number;
   count?: number;
+  description?: string;
 }
 
 const availableItems: Item[] = [
-  { name: "🩳 short shorts", cost: 10, rate: 0.1, count: 0 },
-  { name: "🎸 rock and roll band", cost: 100, rate: 2, count: 0 },
-  { name: "📺 TV show", cost: 1000, rate: 50, count: 0 },
+  { name: "🩳 short shorts", cost: 10, rate: 0.1, count: 0, description: ""},
+  { name: "🎸 rock and roll band", cost: 100, rate: 2, count: 0, description: ""},
+  { name: "📺 TV show", cost: 1000, rate: 50, count: 0, description: "" },
+  { name: "📺 TV show", cost: 5000, rate: 50, count: 0, description: "" },
+  { name: "📺 TV show", cost: 10000, rate: 50, count: 0, description: "" },
 ];
 
 let growthRate: number = 0;
@@ -56,7 +59,7 @@ availableItems.forEach((item, index) => {
   upgradeButton.innerHTML = `${item.name} (${item.rate} units/sec)`;
   upgradeButton.type = "button";
   upgradeButton.disabled = true;
-  upgradeButton.title = `Costs ${item.cost.toFixed(2)} purple people eaters`;
+  upgradeButton.title = `Costs ${item.cost.toFixed(2)} purple people eaters - ${item.description}`;
   app.append(upgradeButton);
   upgradeButtons.push(upgradeButton);
 
@@ -93,7 +96,7 @@ function updateDisplay() {
 
   upgradeButtons.forEach((button, index) => {
     button.disabled = counter < availableItems[index].cost;
-    button.title = `Costs ${availableItems[index].cost.toFixed(2)} purple people eaters`;
+    button.title = `Costs ${availableItems[index].cost.toFixed(2)} purple people eaters - ${availableItems[index].description}`;
   });
 }
 
