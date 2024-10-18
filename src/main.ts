@@ -45,7 +45,13 @@ interface Item {
 }
 
 const availableItems: Item[] = [
-  { name: "🩳 short shorts", cost: 10, rate: 0.1, count: 0, description: "I like short shorts" },
+  {
+    name: "🩳 short shorts",
+    cost: 10,
+    rate: 0.1,
+    count: 0,
+    description: "I like short shorts",
+  },
   {
     name: "🎸 rock and roll band",
     cost: 100,
@@ -53,9 +59,27 @@ const availableItems: Item[] = [
     count: 0,
     description: "Sing a bop-bop aboopa-lopa, loom bam-boom",
   },
-  { name: "📺 TV show", cost: 1000, rate: 50, count: 0, description: "He was blowing it out, a-really knockin' em dead" },
-  { name: "🎺 Horn", cost: 5000, rate: 100, count: 0, description: "Playin' rock and roll music through the horn in his head" },
-  { name: "🕊️ Pigeon-toed", cost: 10000, rate: 200, count: 0, description: "Pigeon-toed, undergrowed, flyin' purple people eater" },
+  {
+    name: "📺 TV show",
+    cost: 1000,
+    rate: 50,
+    count: 0,
+    description: "He was blowing it out, a-really knockin' em dead",
+  },
+  {
+    name: "🎺 Horn",
+    cost: 5000,
+    rate: 100,
+    count: 0,
+    description: "Playin' rock and roll music through the horn in his head",
+  },
+  {
+    name: "🕊️ Pigeon-toed",
+    cost: 10000,
+    rate: 200,
+    count: 0,
+    description: "Pigeon-toed, undergrowed, flyin' purple people eater",
+  },
 ];
 
 let growthRate: number = 0;
