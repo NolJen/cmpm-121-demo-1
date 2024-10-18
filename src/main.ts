@@ -38,7 +38,12 @@ button.addEventListener("click", () => {
 // Purchasable upgrade buttons
 const upgrades = [
   { name: "🩳 short shorts (0.1 units/sec)", cost: 10, rate: 0.1, count: 0 },
-  { name: "🎸 rock and roll band (2.0 units/sec)", cost: 100, rate: 2.0, count: 0 },
+  {
+    name: "🎸 rock and roll band (2.0 units/sec)",
+    cost: 100,
+    rate: 2.0,
+    count: 0,
+  },
   { name: "📺 TV show (50 units/sec)", cost: 1000, rate: 50, count: 0 },
 ];
 
