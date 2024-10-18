@@ -91,7 +91,7 @@ function updateDisplay() {
 
   upgradeButtons.forEach((button, index) => {
     button.disabled = counter < upgrades[index].cost;
-    button.title = `Costs ${upgrades[index].cost.toFixed(2)} purple people eaters`;
+    button.title = `Costs ${upgrades[index].cost.toFixed(2)} purple people eaters`; // Step 8 (i did this a while back)
   });
 }
 
