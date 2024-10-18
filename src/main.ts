@@ -11,7 +11,7 @@ app.append(header);
 
 //step 1 create button and emoji
 const button = document.createElement("button");
-button.innerHTML = "👾 click me";
+button.innerHTML = "👾 Purple People Eater";
 button.type = "button";
 button.name = "funButton";
 button.title = "Click me for fun!";
@@ -36,34 +36,36 @@ button.addEventListener("click", () => {
 
 //step 3
 // Purchasable upgrade buttons
-const upgrades = [
-  { name: "🩳 short shorts (0.1 units/sec)", cost: 10, rate: 0.1, count: 0 },
-  {
-    name: "🎸 rock and roll band (2.0 units/sec)",
-    cost: 100,
-    rate: 2.0,
-    count: 0,
-  },
-  { name: "📺 TV show (50 units/sec)", cost: 1000, rate: 50, count: 0 },
+interface Item {
+  name: string;
+  cost: number;
+  rate: number;
+  count?: number;
+}
+
+const availableItems: Item[] = [
+  { name: "🩳 short shorts", cost: 10, rate: 0.1, count: 0 },
+  { name: "🎸 rock and roll band", cost: 100, rate: 2, count: 0 },
+  { name: "📺 TV show", cost: 1000, rate: 50, count: 0 },
 ];
 
 let growthRate: number = 0;
 const upgradeButtons: HTMLButtonElement[] = [];
-upgrades.forEach((upgrade, index) => {
+availableItems.forEach((item, index) => {
   const upgradeButton = document.createElement("button");
-  upgradeButton.innerHTML = upgrade.name;
+  upgradeButton.innerHTML = `${item.name} (${item.rate} units/sec)`;
   upgradeButton.type = "button";
   upgradeButton.disabled = true;
-  upgradeButton.title = `Costs ${upgrade.cost.toFixed(2)} purple people eaters`;
+  upgradeButton.title = `Costs ${item.cost.toFixed(2)} purple people eaters`;
   app.append(upgradeButton);
   upgradeButtons.push(upgradeButton);
 
   upgradeButton.addEventListener("click", () => {
-    if (counter >= upgrade.cost) {
-      counter -= upgrade.cost;
-      growthRate += upgrade.rate;
-      upgrades[index].count++;
-      upgrades[index].cost *= 1.15; // increase by a factor of 1.15 after each purchase
+    if (counter >= item.cost) {
+      counter -= item.cost;
+      growthRate += item.rate;
+      availableItems[index].count!++;
+      availableItems[index].cost *= 1.15; // increase by a factor of 1.15 after each purchase
       updateDisplay();
     }
   });
@@ -76,8 +78,8 @@ growthRateDiv.innerHTML = `Growth rate: ${growthRate.toFixed(2)} units/sec`;
 app.append(growthRateDiv);
 
 const upgradeCountsDiv = document.createElement("div");
-upgradeCountsDiv.innerHTML = upgrades
-  .map((upgrade) => `${upgrade.name}: ${upgrade.count} purchased`)
+upgradeCountsDiv.innerHTML = availableItems
+  .map((item) => `${item.name}: ${item.count} purchased`)
   .join("<br>");
 app.append(upgradeCountsDiv);
 
@@ -85,13 +87,13 @@ app.append(upgradeCountsDiv);
 function updateDisplay() {
   counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
   growthRateDiv.innerHTML = `Growth rate: ${growthRate.toFixed(2)} units/sec`;
-  upgradeCountsDiv.innerHTML = upgrades
-    .map((upgrade) => `${upgrade.name}: ${upgrade.count} purchased`)
+  upgradeCountsDiv.innerHTML = availableItems
+    .map((item) => `${item.name}: ${item.count} purchased`)
     .join("<br>");
 
   upgradeButtons.forEach((button, index) => {
-    button.disabled = counter < upgrades[index].cost;
-    button.title = `Costs ${upgrades[index].cost.toFixed(2)} purple people eaters`; // Step 8 (i did this a while back)
+    button.disabled = counter < availableItems[index].cost;
+    button.title = `Costs ${availableItems[index].cost.toFixed(2)} purple people eaters`;
   });
 }
 
