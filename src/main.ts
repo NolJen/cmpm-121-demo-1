@@ -11,8 +11,8 @@ app.append(header);
 
 //step 1 create button and emoji
 const button = document.createElement("button");
-button.innerHTML = "👾"
-button.type = "button"
+button.innerHTML = "👾";
+button.type = "button";
 
 app.append(button);
 //refrenced https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button
