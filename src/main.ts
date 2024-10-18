@@ -45,8 +45,14 @@ interface Item {
 }
 
 const availableItems: Item[] = [
-  { name: "🩳 short shorts", cost: 10, rate: 0.1, count: 0, description: ""},
-  { name: "🎸 rock and roll band", cost: 100, rate: 2, count: 0, description: ""},
+  { name: "🩳 short shorts", cost: 10, rate: 0.1, count: 0, description: "" },
+  {
+    name: "🎸 rock and roll band",
+    cost: 100,
+    rate: 2,
+    count: 0,
+    description: "",
+  },
   { name: "📺 TV show", cost: 1000, rate: 50, count: 0, description: "" },
   { name: "📺 TV show", cost: 5000, rate: 50, count: 0, description: "" },
   { name: "📺 TV show", cost: 10000, rate: 50, count: 0, description: "" },
