@@ -42,6 +42,26 @@ button.addEventListener("click", () => {
 //}, 1000);
 // refrenced https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
 
+// Create a purchasable upgrade button
+const upgradeButton = document.createElement("button");
+upgradeButton.innerHTML = "🩳 Buy Short Shorts";
+upgradeButton.type = "button";
+upgradeButton.disabled = true;
+upgradeButton.title = "Costs 10 purple people eaters";
+app.append(upgradeButton);
+
+// Add an event listener to the upgrade button to increase the growth rate
+let growthRate: number = 0;
+upgradeButton.addEventListener("click", () => {
+  if (counter >= 10) {
+    counter -= 10;
+    growthRate += 1;
+    counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
+    upgradeButton.disabled = counter < 10;
+  }
+});
+
+
 //step 4
 // increase of 1 unit per second
 let lastTimestamp: number | null = null;
@@ -49,8 +69,9 @@ let lastTimestamp: number | null = null;
 function updateCounter(timestamp: number) {
   if (lastTimestamp !== null) {
     const elapsed = timestamp - lastTimestamp;
-    counter += elapsed / 1000;
+    counter += elapsed / 1000 * growthRate;
     counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
+    upgradeButton.disabled = counter < 10; 
   }
   lastTimestamp = timestamp;
   requestAnimationFrame(updateCounter);
