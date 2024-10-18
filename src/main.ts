@@ -61,7 +61,6 @@ upgradeButton.addEventListener("click", () => {
   }
 });
 
-
 //step 4
 // increase of 1 unit per second
 let lastTimestamp: number | null = null;
@@ -69,7 +68,7 @@ let lastTimestamp: number | null = null;
 function updateCounter(timestamp: number) {
   if (lastTimestamp !== null) {
     const elapsed = timestamp - lastTimestamp;
-    counter += elapsed / 1000 * growthRate;
+    counter += (elapsed / 1000) * growthRate;
     counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
     upgradeButton.disabled = counter < 10; //button is disabled until the player has at least 10 units in their counter
   }
