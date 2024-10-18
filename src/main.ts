@@ -54,7 +54,7 @@ upgrades.forEach((upgrade, index) => {
   upgradeButton.innerHTML = upgrade.name;
   upgradeButton.type = "button";
   upgradeButton.disabled = true;
-  upgradeButton.title = `Costs ${upgrade.cost} purple people eaters`;
+  upgradeButton.title = `Costs ${upgrade.cost.toFixed(2)} purple people eaters`;
   app.append(upgradeButton);
   upgradeButtons.push(upgradeButton);
 
@@ -63,6 +63,7 @@ upgrades.forEach((upgrade, index) => {
       counter -= upgrade.cost;
       growthRate += upgrade.rate;
       upgrades[index].count++;
+      upgrades[index].cost *= 1.15; // increase by a factor of 1.15 after each purchase
       updateDisplay();
     }
   });
@@ -90,6 +91,7 @@ function updateDisplay() {
 
   upgradeButtons.forEach((button, index) => {
     button.disabled = counter < upgrades[index].cost;
+    button.title = `Costs ${upgrades[index].cost.toFixed(2)} purple people eaters`;
   });
 }
 
@@ -109,3 +111,4 @@ function updateCounter(timestamp: number) {
 requestAnimationFrame(updateCounter);
 // sources https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame
 // https://developer.mozilla.org/en-US/docs/Web/API/Performance/now
+// another soure: https://en.wikipedia.org/wiki/Exponential_growth
