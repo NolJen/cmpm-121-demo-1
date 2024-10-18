@@ -49,7 +49,7 @@ let lastTimestamp: number | null = null;
 function updateCounter(timestamp: number) {
   if (lastTimestamp !== null) {
     const elapsed = timestamp - lastTimestamp;
-    counter += elapsed / 1000; 
+    counter += elapsed / 1000;
     counterDiv.innerHTML = `${counter.toFixed(2)} purple people eaters`;
   }
   lastTimestamp = timestamp;
