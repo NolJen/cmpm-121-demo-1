@@ -107,7 +107,7 @@ const upgradeCountsDiv = document.createElement("div");
 upgradeCountsDiv.innerHTML = availableItems
   .map((item) => `${item.name}: ${item.count} purchased`)
   .join("<br>");
-  gameContainer.append(upgradeCountsDiv);
+gameContainer.append(upgradeCountsDiv);
 
 // Function to update the display
 function updateDisplay() {
