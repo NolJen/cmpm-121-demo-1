@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #B68CBD;
+  background-color: #b68cbd;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -51,7 +51,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #433B44;
+  background-color: #433b44;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -64,7 +64,8 @@ button:focus-visible {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -75,12 +76,12 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #B68CBD;
+    background-color: #b68cbd;
   }
   a:hover {
     color: #747bff;
   }
   button {
-    background-color: #433B44;
+    background-color: #433b44;
   }
 }
